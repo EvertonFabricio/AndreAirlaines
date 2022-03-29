@@ -20,6 +20,24 @@ END
 Go
 
 
+CREATE or ALTER PROCEDURE IncluirAeroporto
+
+@Sigla varchar(5),
+@Nome varchar(50)
+AS
+BEGIN
+DECLARE
+	@Endereco int;
+SELECT TOP 1 @Endereco = Id FROM Endereco ORDER BY NEWID()
+INSERT INTO Aeroporto
+VALUES (@Sigla,@Nome,@Endereco)
+END
+
+
+select *
+from Aeroporto
+
+
 
 CREATE or ALTER PROCEDURE IncluirEnderecoCompleto
 @Logradouro varchar(100),

@@ -9,7 +9,7 @@ namespace File
 {
     public class File
     {
-        public static void LerArquivoEndereco()
+        public static void ImportarPassageiroEndereco()
         {
             try
             {
@@ -71,7 +71,6 @@ namespace File
 
         }
 
-
         public static void CadastrarPassageiro()
         {
             Console.WriteLine("CPF:");
@@ -95,7 +94,7 @@ namespace File
             Console.WriteLine("Localidade:");
             var localidade = Console.ReadLine();
             Console.WriteLine("UF:");
-            var uf = Console.ReadLine();
+            var uf = Console.ReadLine().ToUpper();
             Console.WriteLine("Pais:");
             var pais = Console.ReadLine();
             Console.WriteLine("CEP:");
@@ -146,7 +145,81 @@ namespace File
 
         }
 
+        public static void CadastrarAeronave()
+        {
+            Console.WriteLine("Nome Aeronave:");
+            var Nome = Console.ReadLine().ToUpper();
+            Console.WriteLine("Capacidade da Aeronave:");
+            var Capacidade = int.Parse(Console.ReadLine());
 
+            try
+            {
+                var connetionString = @"Data Source=Everton;Initial Catalog=AndreAirlines;User ID=sa;Password=007410";
+                SqlConnection connection = new SqlConnection(connetionString);
+                using (connection)
+                {
+                    connection.Open();
+                    string sql = "INSERT INTO Aeronave (Nome, Capacidade) VALUES (@Nome, @Capacidade)";
+
+                    SqlCommand sql_cmnd = new SqlCommand(sql, connection);
+
+                    sql_cmnd.Parameters.AddWithValue("@Nome", SqlDbType.VarChar).Value = Nome;
+                    sql_cmnd.Parameters.AddWithValue("@Capacidade", SqlDbType.Int).Value = Capacidade;
+                    
+                    sql_cmnd.ExecuteNonQuery();
+
+                    connection.Close();
+
+                }
+            }
+            catch (SqlException erro)
+            {
+                Console.WriteLine("Erro ao se conectar no banco de dados \n" + erro);
+                Console.ReadKey();
+            }
+
+
+
+
+        }
+
+        public static void CadastrarAeroporto()
+        {
+            Console.WriteLine("Sigla do Aeroporto:");
+            var Sigla = Console.ReadLine().ToUpper();
+            Console.WriteLine("Nome do Aeroporto:");
+            var Nome = Console.ReadLine();
+
+            try
+            {
+                var connetionString = @"Data Source=Everton;Initial Catalog=AndreAirlines;User ID=sa;Password=007410";
+                SqlConnection connection = new SqlConnection(connetionString);
+                using (connection)
+                {
+                    connection.Open();
+
+                    SqlCommand sql_cmnd = new SqlCommand("IncluirAeroporto" , connection);
+
+                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                    sql_cmnd.Parameters.AddWithValue("@Sigla", SqlDbType.VarChar).Value = Sigla;
+                    sql_cmnd.Parameters.AddWithValue("@Nome", SqlDbType.Int).Value = Nome;
+
+                    sql_cmnd.ExecuteNonQuery();
+
+                    connection.Close();
+
+                }
+            }
+            catch (SqlException erro)
+            {
+                Console.WriteLine("Erro ao se conectar no banco de dados \n" + erro);
+                Console.ReadKey();
+            }
+
+
+
+
+        }
 
     }
 }

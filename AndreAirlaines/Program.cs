@@ -21,6 +21,8 @@ namespace AndreAirlaines
                 Console.WriteLine("Escolha a opção desejada:");
                 Console.WriteLine("1 - Cadastrar Passageiro");
                 Console.WriteLine("2 - Importar arquivos CSV");
+                Console.WriteLine("3 - Cadastrar Aeronave");
+                Console.WriteLine("4 - Cadastrar Aeroporto");
                 Console.WriteLine("0 - Sair");
 
                 switch (escolha = Console.ReadLine())
@@ -33,12 +35,30 @@ namespace AndreAirlaines
                         Console.Clear();
                         break;
 
-                    
+
                     case "2":
                         Console.Clear();
                         Console.WriteLine("Importando arquivos de Passageiros e Endereços. Por favor aguarde...");
-                        File.File.LerArquivoEndereco();
+                        File.File.ImportarPassageiroEndereco();
                         Console.WriteLine("Arquivos importados com sucesso!\nPressione ENTER para voltar...");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                    case "3":
+                        Console.Clear();
+                        File.File.CadastrarAeronave();
+                        Console.WriteLine("Aeronave cadastrada com sucesso!\nPressione ENTER para voltar...");
+                        Console.ReadLine();
+                        Console.Clear();
+
+                        break;
+
+
+                    case "4":
+                        Console.Clear();
+                        File.File.CadastrarAeroporto();
+                        Console.WriteLine("Aeroporto cadastrada com sucesso!\nPressione ENTER para voltar...");
                         Console.ReadLine();
                         Console.Clear();
                         break;
