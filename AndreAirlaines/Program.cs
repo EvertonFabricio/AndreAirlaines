@@ -38,7 +38,6 @@ namespace AndreAirlaines
                         Console.Clear();
                         Console.WriteLine("Importando arquivos de Passageiros e Endereços. Por favor aguarde...");
                         File.File.LerArquivoEndereco();
-                        //File.File.LerArquivoPassageiro();
                         Console.WriteLine("Arquivos importados com sucesso!\nPressione ENTER para voltar...");
                         Console.ReadLine();
                         Console.Clear();
