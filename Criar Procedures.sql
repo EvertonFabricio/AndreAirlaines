@@ -19,8 +19,7 @@ SELECT @Id = MAX(Id) From Endereco
 END
 Go
 
-select *
-from Passageiro
+
 
 CREATE or ALTER PROCEDURE IncluirEnderecoCompleto
 @Logradouro varchar(100),
@@ -56,11 +55,3 @@ Go
 
 
 
-
-
-delete Passageiro
-delete Endereco
-
-
-select * from Endereco
-Select * from Passageiro
